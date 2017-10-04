@@ -30,8 +30,8 @@ class App extends Component {
   }
 
   generateMeme(e) {
-    this.setState({text: queryString.stringify(this.state)})
-    console.log("something happen")
+    this.setState({text: ("/generate?" + queryString.stringify(this.state))})
+    console.log("/generate?" + queryString.stringify(this.state))
     e.preventDefault()
   }
 
@@ -68,7 +68,7 @@ class App extends Component {
           Return Image
         </p>
         <p>
-          <img src={"/generate" + this.state.path} alt="where is the image"></img>
+          <img src={this.state.path} alt="where is the image"></img>
         </p>
       </div>
     );
