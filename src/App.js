@@ -7,13 +7,13 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '',
       memetext: '',
       bg: 1,
-      fontSize: 0,
-      color: 0,
+      fontsize: 0,
+      color: "#FF00FF",
       x: 0,
       y: 0,
+      blur: 0,
       path: ''
     };
     this.generateMeme = this.generateMeme.bind(this)
@@ -31,7 +31,7 @@ class App extends Component {
 
   generateMeme(e) {
     var url = "/generate?" + queryString.stringify(this.state)
-    this.setState({text: url})
+    this.setState({path: url})
     e.preventDefault()
   }
 
@@ -41,27 +41,39 @@ class App extends Component {
         <h1>Meme generator</h1>
         <form onSubmit={this.generateMeme}>
           <p>
-            Meme text:<input type="text" name="memetext" value={this.state.memetext} onChange={this.handleChange}></input>
+            Meme text :<input type="text" name="memetext" value={this.state.memetext} onChange={this.handleChange}></input>
           </p>
           <p>
-            background:<input type="number" name="bg" value={this.state.bg} onChange={this.handleChange}></input>
+            background :<input type="number" name="bg" value={this.state.bg} onChange={this.handleChange}></input>
           </p>
           <p>
-            font size:<input type="number" name="fontSize" value={this.state.fontSize} onChange={this.handleChange}></input>
+            font size :<input type="number" name="fontsize" value={this.state.fontSize} onChange={this.handleChange}></input>
           </p>
           <p>
             face color:<input type="text" name="color" value={this.state.color} onChange={this.handleChange}></input>
+            <div style={{
+              display: 'inline-block', 
+              marginLeft: 20,
+              width: 20,
+              height:20,
+              backgroundColor: this.state.color
+            }}
+            />
           </p>
           <p>
-            x:<input type="number" name="x" value={this.state.x} onChange={this.handleChange}></input>
+            x :<input type="number" name="x" value={this.state.x} onChange={this.handleChange}></input>
           </p>
           <p>
-            y:
+            y :
             <input type="number" name="y" value={this.state.y} onChange={this.handleChange}></input>
+          </p>
+          <p>
+            blur :<input type="number" name="blur" value={this.state.blur} onChange={this.handleChange}></input>
           </p>
           <p>
             <input type="submit" value="Generate Meme"></input>
           </p>
+        
         </form>
 
         <p>
